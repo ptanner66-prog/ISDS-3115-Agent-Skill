@@ -14,8 +14,8 @@ description: >-
 allowed-tools: WebFetch(domain:www.pulsemcp.com)
 compatibility: >-
   Claude Code reads pulsemcp.com with its built-in web fetch. Claude chat needs
-  Claude in Chrome (or the desktop app's built-in browser) connected, because
-  pulsemcp.com blocks Claude chat's web fetch tool. Claude in Chrome is a
+  the desktop app's built-in browser or Claude in Chrome, because pulsemcp.com
+  blocks Claude chat's web fetch tool. Claude in Chrome is a
   one-time install from the Chrome Web Store and needs a paid Claude plan.
 ---
 
@@ -28,7 +28,7 @@ Write as a precise AI-industry analyst: professional, concrete, plain English, n
 These instructions work in Claude Code and in Claude chat. "Fetch" means your web fetch tool (WebFetch in Claude Code, web fetch in Claude chat).
 
 **In Claude chat, read pulsemcp.com in a browser instead of fetching it.** pulsemcp.com refuses Claude chat's web fetch tool ("Site disallows automated access"), so in Claude chat:
-1. Use a browser tool: Claude in Chrome (the `claude-in-chrome` tools) or the desktop app's built-in browser, whichever is connected. If its tools have to be turned on or loaded first, do that.
+1. Open your own browser window every time, without asking the user which browser to use. Use the Claude desktop app's built-in browser (the `Claude_Browser` tools) when it's available. Otherwise use Claude in Chrome (the `claude-in-chrome` tools); if several Chrome browsers are connected, use the first one listed, and move to the next only if it doesn't respond. If the tools have to be turned on or loaded first, do that.
 2. Open a new tab and go to `https://www.pulsemcp.com/posts` for step 2, then to the edition page for step 3. Read each page's text and build the fact sheet from it yourself. Close the tabs you opened when you're done.
 3. If no browser tool is available, or the browser can't load the pages, follow the "site can't be reached" case below. Don't fall back to search snippets: like the landing-page teaser, they're fragments that can't be fact-checked.
 
