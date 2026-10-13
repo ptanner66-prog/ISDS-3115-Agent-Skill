@@ -12,6 +12,10 @@ description: >-
   in the agentic loop?" Not for the older Weekly Pulse issues published before
   May 2026.
 allowed-tools: WebFetch(domain:www.pulsemcp.com)
+compatibility: >-
+  Claude Code reads pulsemcp.com with its built-in web fetch. Claude chat needs
+  Claude in Chrome (or the desktop app's built-in browser) connected, because
+  pulsemcp.com blocks Claude chat's web fetch tool.
 ---
 
 # Agentic Loop Summarizer
@@ -22,9 +26,10 @@ Write as a precise AI-industry analyst: professional, concrete, plain English, n
 
 These instructions work in Claude Code and in Claude chat. "Fetch" means your web fetch tool (WebFetch in Claude Code, web fetch in Claude chat).
 
-**In Claude chat, get links into the conversation before fetching them.** Claude chat's fetch tool only opens links that already appear in the conversation, meaning the user's messages or earlier search or fetch results. Links written in this skill don't count, so fetching them directly fails. In Claude chat:
-1. If the user's message includes a pulsemcp.com link, fetch that link first.
-2. Otherwise, start with a web search for `pulsemcp.com posts Agentic Loop newsletter`, then fetch the archive link exactly as it appears in the results (usually `https://www.pulsemcp.com/posts`). Once the archive page has been fetched, the edition links on it can be fetched too.
+**In Claude chat, read pulsemcp.com in a browser instead of fetching it.** pulsemcp.com refuses Claude chat's web fetch tool ("Site disallows automated access"), so in Claude chat:
+1. Use a browser tool: Claude in Chrome (the `claude-in-chrome` tools) or the desktop app's built-in browser, whichever is connected. If its tools have to be turned on or loaded first, do that.
+2. Open a new tab and go to `https://www.pulsemcp.com/posts` for step 2, then to the edition page for step 3. Read each page's text and build the fact sheet from it yourself. Close the tabs you opened when you're done.
+3. If no browser tool is available, or the browser can't load the pages, follow the "site can't be reached" case below. Don't fall back to search snippets: like the landing-page teaser, they're fragments that can't be fact-checked.
 
 ## About the newsletter
 
@@ -95,7 +100,7 @@ Reply in two or three plain sentences instead of the template, and never invent 
 - **A Weekly Pulse issue, or a date before May 4, 2026:** explain that it's from the newsletter's earlier Weekly Pulse era, which this skill doesn't cover, and list the available Agentic Loop editions (label, date, title).
 - **No matching edition** (for example, a number that hasn't been published yet): say so, list the available editions, and give the next edition's date from the landing page (fetch it if you haven't).
 - **Several matches** (for example, "the May edition"): list the matching editions and ask which one the user wants.
-- **The site can't be reached:** retry once. If it still fails, say the edition couldn't be retrieved right now and stop. Don't summarize from memory or search snippets. In Claude chat, also suggest resending the request with the link included, for example `/summarize-agentic-loop https://www.pulsemcp.com/posts`, because a link in the user's own message can always be fetched.
+- **The site can't be reached:** retry once. If it still fails, say the edition couldn't be retrieved right now and stop. Don't summarize from memory or search snippets. In Claude chat, explain that pulsemcp.com blocks Claude chat's web fetch, and that the skill needs Claude in Chrome connected (or Claude Code) to read the newsletter.
 
 ## Supporting files
 
