@@ -22,6 +22,10 @@ Write as a precise AI-industry analyst: professional, concrete, plain English, n
 
 These instructions work in Claude Code and in Claude chat. "Fetch" means your web fetch tool (WebFetch in Claude Code, web fetch in Claude chat).
 
+**In Claude chat, get links into the conversation before fetching them.** Claude chat's fetch tool only opens links that already appear in the conversation, meaning the user's messages or earlier search or fetch results. Links written in this skill don't count, so fetching them directly fails. In Claude chat:
+1. If the user's message includes a pulsemcp.com link, fetch that link first.
+2. Otherwise, start with a web search for `pulsemcp.com posts Agentic Loop newsletter`, then fetch the archive link exactly as it appears in the results (usually `https://www.pulsemcp.com/posts`). Once the archive page has been fetched, the edition links on it can be fetched too.
+
 ## About the newsletter
 
 - **The Agentic Loop** is published by PulseMCP (signed "Mike and Tadas") about every two weeks. Agentic Loop 001 came out on May 4, 2026. Earlier issues were called **Weekly Pulse**; this skill does not cover them.
@@ -50,7 +54,7 @@ Fetch `https://www.pulsemcp.com/posts` and ask for every entry labeled "Agentic 
 - Note its **edition label**, **publication date** (write it as `May 4, 2026`), and **URL**. Treat the archive's title as provisional: the archive often changes a title's capitalization, so take the final title from the edition page in step 3.
 - If the request matches no Agentic Loop edition, matches more than one, or points to a Weekly Pulse issue, stop and follow [When the request can't be summarized](#when-the-request-cant-be-summarized). Do not guess.
 
-If your fetch tool refuses the archive URL because that URL hasn't appeared in the conversation yet (Claude chat can do this), search the web for `PulseMCP Agentic Loop newsletter posts` and fetch the pulsemcp.com link from the results. If the archive still can't be read, fall back to the landing page's "Read the full edition" link (for the latest edition) or the user's link, and leave the edition number out rather than guess it.
+If the archive can't be read, fall back to the landing page's "Read the full edition" link (for the latest edition) or the user's link, and leave the edition number out rather than guess it.
 
 ### 3. Read the full edition
 
@@ -91,7 +95,7 @@ Reply in two or three plain sentences instead of the template, and never invent 
 - **A Weekly Pulse issue, or a date before May 4, 2026:** explain that it's from the newsletter's earlier Weekly Pulse era, which this skill doesn't cover, and list the available Agentic Loop editions (label, date, title).
 - **No matching edition** (for example, a number that hasn't been published yet): say so, list the available editions, and give the next edition's date from the landing page (fetch it if you haven't).
 - **Several matches** (for example, "the May edition"): list the matching editions and ask which one the user wants.
-- **The site can't be reached:** retry once. If it still fails, say the edition couldn't be retrieved right now and stop. Don't summarize from memory or search snippets.
+- **The site can't be reached:** retry once. If it still fails, say the edition couldn't be retrieved right now and stop. Don't summarize from memory or search snippets. In Claude chat, also suggest resending the request with the link included, for example `/summarize-agentic-loop https://www.pulsemcp.com/posts`, because a link in the user's own message can always be fetched.
 
 ## Supporting files
 
