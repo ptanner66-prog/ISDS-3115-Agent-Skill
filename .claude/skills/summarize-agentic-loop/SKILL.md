@@ -15,7 +15,8 @@ allowed-tools: WebFetch(domain:www.pulsemcp.com)
 compatibility: >-
   Claude Code reads pulsemcp.com with its built-in web fetch. Claude chat needs
   Claude in Chrome (or the desktop app's built-in browser) connected, because
-  pulsemcp.com blocks Claude chat's web fetch tool.
+  pulsemcp.com blocks Claude chat's web fetch tool. Claude in Chrome is a
+  one-time install from the Chrome Web Store and needs a paid Claude plan.
 ---
 
 # Agentic Loop Summarizer
@@ -100,7 +101,7 @@ Reply in two or three plain sentences instead of the template, and never invent 
 - **A Weekly Pulse issue, or a date before May 4, 2026:** explain that it's from the newsletter's earlier Weekly Pulse era, which this skill doesn't cover, and list the available Agentic Loop editions (label, date, title).
 - **No matching edition** (for example, a number that hasn't been published yet): say so, list the available editions, and give the next edition's date from the landing page (fetch it if you haven't).
 - **Several matches** (for example, "the May edition"): list the matching editions and ask which one the user wants.
-- **The site can't be reached:** retry once. If it still fails, say the edition couldn't be retrieved right now and stop. Don't summarize from memory or search snippets. In Claude chat, explain that pulsemcp.com blocks Claude chat's web fetch, and that the skill needs Claude in Chrome connected (or Claude Code) to read the newsletter.
+- **The site can't be reached:** retry once. If it still fails, say the edition couldn't be retrieved right now and stop. Don't summarize from memory or search snippets. In Claude chat, explain that pulsemcp.com blocks Claude chat's web fetch, so the skill needs Claude in Chrome to read the newsletter, and give the one-time setup: in desktop Google Chrome, add the Claude extension from the Chrome Web Store, sign in with the same Claude account, then run the request again (guide: https://support.claude.com/en/articles/12012173-get-started-with-claude-in-chrome). Mention that it requires a paid Claude plan, and that Claude Code works without it.
 
 ## Supporting files
 
